@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>全面解析this</title>
+  </head>
+  <body></body>
+  <script>
+    // function foo() {
+    //   console.log(this) //window
+    //   console.log(this.a) //2
+    // }
+    // var a = 2
+    // foo()
+
+    // function foo() {
+    //   console.log(this.a)
+    // }
+    // const obj2 = {
+    //   a: 42,
+    //   foo: foo,
+    // }
+    // const obj1 = {
+    //   a: 2,
+    //   obj2: obj2,
+    // }
+    // obj1.obj2.foo() // 42
+
+    // function foo() {
+    //   console.log(this.a)
+    // }
+    // const obj = {
+    //   a: 2,
+    //   foo: foo,
+    // }
+    // const bar = obj.foo // 函数别名！
+    // var a = 'oops, global' // a 是全局对象的属性
+    // bar() // "oops, global"
+
+    // function foo() {
+    //   console.log(this.a)
+    // }
+    // function doFoo(fn) {
+    //   // fn 其实引用的是 foo
+    //   fn() // <-- 调用位置！
+    // }
+    // const obj = {
+    //   a: 2,
+    //   foo: foo,
+    // }
+    // var a = 'oops, global' // a 是全局对象的属性
+    // doFoo(obj.foo) // "oops, global
+    // obj.foo() //2
+
+    // function foo() {
+    //   console.log(this.a)
+    // }
+    // var obj = {
+    //   a: 2,
+    //   foo: foo,
+    // }
+    // var a = 'oops, global' // a 是全局对象的属性
+    // setTimeout(obj.foo, 100) // "oops, global
+
+    // function foo() {
+    //   console.log(this.a)
+    // }
+    // var obj = {
+    //   a: 2,
+    // }
+    // var a = 10
+    // var bar = function () {
+    //   foo.call(obj)
+    // }
+    // bar() // 2
+    // setTimeout(bar, 100) // 2
+    // // 硬绑定的 bar 不可能再修改它的 this
+    // bar.call(window) // 2
+
+    function foo(el) {
+      console.log(el, this.id)
+    }
+    var obj = {
+      id: 'awesome',
+    }
+    // 调用 foo(..) 时把 this 绑定到 obj
+    ;[1, 2, 3].forEach(foo, obj)
+    // 1 awesome
+    // 2 awesome
+    // 3 awesome
+  </script>
+</html>
